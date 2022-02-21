@@ -11,11 +11,10 @@ interface IContact extends mongoose.Document {
 export interface INoticeAdoption extends mongoose.Document {
   name: string;
   title: string;
-  health: Array<string>;
+  health: string;
   situation: string;
   description: string;
-  foundDate: Date;
-  user: mongoose.Schema.Types.ObjectId;
+  date: Date;
   province: mongoose.Schema.Types.ObjectId;
   contact: IContact;
   updated: Number;
@@ -66,16 +65,19 @@ export const NoticeAdoptionSchema = new mongoose.Schema({
     trim: true,
     required: "Descripcion es requerido"
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+  health: {
+    type: String,
+    default: "",
   },
-  health: [{
-      type: String
-  }],
   contact:{
     type: ContactSchema,
     default: {}
+  },
+  date: {
+    type: String,
+    default: "",
+    trim: true,
+    required: "Visto por ultima vez requerido"
   },
   province: {
     type: mongoose.Schema.Types.ObjectId,

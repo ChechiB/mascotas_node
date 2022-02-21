@@ -12,7 +12,7 @@ export interface INoticeFound extends mongoose.Document {
   name: string;
   title: string;
   description: string;
-  foundDate: Date;
+  date: Date;
   user: mongoose.Schema.Types.ObjectId;
   province: mongoose.Schema.Types.ObjectId;
   contact: IContact;
@@ -46,7 +46,7 @@ export const NoticeFoundSchema = new mongoose.Schema({
     trim: true,
     required: "Titulo es requerido"
   },
-  foundDate: {
+  date: {
     type: String,
     default: "",
     trim: true,

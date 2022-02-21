@@ -2,14 +2,19 @@
 
 import * as mongoose from "mongoose";
 
-export interface INoticeLost extends mongoose.Document {
+interface IContact extends mongoose.Document {
   name: string;
+  phone: string;
+  email: string;
+}
+export interface INoticeLost extends mongoose.Document {
+  pet: mongoose.Schema.Types.ObjectId;
   title: string;
   description: string;
-  lastSeen: Date;
-  user: mongoose.Schema.Types.ObjectId;
+  date: Date;
+  contact: IContact;
   province: mongoose.Schema.Types.ObjectId;
-  reward: number;
+  reward: string;
   updated: Number;
   created: Number;
   enabled: Boolean;
@@ -18,6 +23,22 @@ export interface INoticeLost extends mongoose.Document {
 /**
  * Esquema de Anuncios mascotas perdidas
  */
+
+ const ContactSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    default: ""
+  },
+  phone: {
+    type: String,
+    default: ""
+  },
+  email: {
+    type: String,
+    default: ""
+  }
+}, { _id : false });
+
 export const NoticeLostSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -25,13 +46,12 @@ export const NoticeLostSchema = new mongoose.Schema({
         trim: true,
         required: "Titulo es requerido"
     },
-  name: {
-    type: String,
-    default: "",
-    trim: true,
-    required: "Nombre es requerido"
+  pet: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Pet",
+    required: "Mascota es requerido"
   },
-  lastSeen: {
+  date: {
     type: Date,
     default: "",
     trim: true,
@@ -43,14 +63,13 @@ export const NoticeLostSchema = new mongoose.Schema({
     trim: true,
     required: "Descripcion requerida"
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: "Usuario es requerido"
+  contact:{
+    type: ContactSchema,
+    default: {}
   },
   reward: {
-    type: Number,
-    default: 0
+    type: String,
+    default: ""
   },
   province: {
       type: mongoose.Schema.Types.ObjectId,

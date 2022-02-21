@@ -26,10 +26,10 @@ async function read(req: ISessionRequest, res: express.Response) {
     res.json({
         id: result.id,
         title: result.title,
-        name: result.name,
-        lastSeen: result.lastSeen,
+        pet: result.pet,
+        date: result.date,
         description: result.description,
-        user: result.user,
+        contact: result.contact,
         reward: result.reward,
         province: result.province
     });
@@ -42,10 +42,10 @@ async function list(req: ISessionRequest, res: express.Response) {
     return {
         id: u.id,
         title: u.title,
-        name: u.name,
-        lastSeen: u.lastSeen,
+        pet: u.pet,
+        date: u.date,
         description: u.description,
-        user: u.user,
+        contact: u.contact,
         reward: u.reward,
         province: u.province
     };
@@ -63,10 +63,10 @@ async function create(req: ISessionRequest, res: express.Response) {
     res.json({
         id: result.id,
         title: result.title,
-        name: result.name,
-        lastSeen: result.lastSeen,
-        description: result.description,
-        user: result.user,
+        pet: result.pet,
+        lastSeen: result.date,
+        date: result.description,
+        contact: result.contact,
         reward: result.reward,
         province: result.province
     });

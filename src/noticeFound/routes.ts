@@ -26,7 +26,7 @@ async function read(req: ISessionRequest, res: express.Response) {
     res.json({
         id: result.id,
         title: result.title,
-        foundDate: result.foundDate,
+        date: result.date,
         description: result.description,
         user: result.user,
         contact: result.contact,
@@ -41,7 +41,7 @@ async function list(req: ISessionRequest, res: express.Response) {
     return {
         id: u.id,
         title: u.title,
-        foundDate: u.foundDate,
+        date: u.date,
         description: u.description,
         user: u.user,
         contact: u.contact,
@@ -61,7 +61,7 @@ async function create(req: ISessionRequest, res: express.Response) {
     res.json({
         id: result.id,
         title: result.title,
-        foundDate: result.foundDate,
+        date: result.date,
         description: result.description,
         user: result.user,
         contact: result.contact,

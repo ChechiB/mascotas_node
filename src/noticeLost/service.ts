@@ -37,7 +37,7 @@ async function validateUpdate(body: INoticeLost): Promise<INoticeLost> {
     messages: []
   };
 
-  if (body.name && body.name.length > 256) {
+  if (body.title && body.title.length > 256) {
     result.messages.push({ path: "name", message: "Hasta 256 caracteres solamente." });
   }
 
@@ -62,8 +62,8 @@ export async function update(noticeId: string, body: INoticeLost): Promise<INoti
     }
 
     const validBody = await validateUpdate(body);
-    if (validBody.name) {
-      current.name = validBody.name;
+    if (validBody.title) {
+      current.title = validBody.title;
     }
 
     await current.save();
@@ -78,9 +78,9 @@ async function validateCreate(body: INoticeLost): Promise<INoticeLost> {
         messages: []
     };
 
-    if (!body.name || body.name.length <= 0) {
+    if (!body.title || body.title.length <= 0) {
         result.messages.push({ path: "name", message: "No puede quedar vacío." });
-    } else if (body.name.length > 256) {
+    } else if (body.title.length > 256) {
         result.messages.push({ path: "name", message: "Hasta 256 caracteres solamente." });
     }
 
@@ -94,11 +94,10 @@ async function validateCreate(body: INoticeLost): Promise<INoticeLost> {
 
 export async function create(body: INoticeLost): Promise<string> {
     try {
-        console.log(body);
         const validated = await validateCreate(body);
 
         const noticeLost = new NoticeLost(body);
-        noticeLost.name = validated.name;
+        noticeLost.title = validated.title;
 
         const saved = await noticeLost.save();
         return Promise.resolve(saved._id.toHexString());

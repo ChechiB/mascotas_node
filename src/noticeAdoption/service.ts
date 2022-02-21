@@ -45,11 +45,6 @@ async function validateUpdate(body: INoticeAdoption): Promise<INoticeAdoption> {
     result.messages.push({ path: "description", message: "Hasta 250 caracteres solamente." });
   }
 
-  // if not user register, then should be a contact
-  if (!body.user && !body.contact) {
-    result.messages.push({ path: "contact", message: "Debe existir un contacto" });
-  }
-
   if (body.contact && body.contact.name && body.contact.name.length > 100) {
     result.messages.push({ path: "contact", message: "Hasta 100 caracteres solamente." });
   }
@@ -101,10 +96,6 @@ async function validateCreate(body: INoticeAdoption): Promise<INoticeAdoption> {
 
     if (body.description && body.description.length > 250) {
         result.messages.push({ path: "description", message: "Hasta 250 caracteres solamente." });
-    }
-    // if not user register, then should be a contact
-    if (!body.user && !body.contact) {
-        result.messages.push({ path: "contact", message: "Debe existir un contacto" });
     }
 
     if (body.contact && body.contact.name && body.contact.name.length > 100) {
