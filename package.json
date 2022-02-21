@@ -9,7 +9,7 @@
     "author": "Nestor Marsollier",
     "license": "MIT",
     "scripts": {
-        "start": "npm run build && npm run watch",
+        "start": "npm i bson && npm run build && npm run watch",
         "build": "npm run build-ts && npm run apidoc && npm run apidocmd",
         "serve": "node dist/server.js",
         "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\"  \"npm run watch-ts\" \"nodemon --delay 3 dist/server.js\"",
@@ -21,6 +21,7 @@
     "dependencies": {
         "apidoc-markdown2": "^0.3.7",
         "body-parser": "1.19.0",
+        "bson": "^4.6.1",
         "compression": "1.7.4",
         "connect-mongo": "3.2.0",
         "cors": "2.8.5",
